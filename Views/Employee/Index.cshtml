@@ -1,0 +1,101 @@
+﻿@model List<EmployeeMVC.Models.EmployeeListViewModel>
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<h2>Employee List</h2>
+
+<br />
+
+<p>
+    <a asp-controller="Employee"
+       asp-action="Create"
+       class="btn btn-success">
+        Add Employee
+    </a>
+
+    <a asp-controller="Employee"
+       asp-action="ExportToExcel"
+       class="btn btn-warning">
+        Export To Excel
+    </a>
+</p>
+
+<table class="table table-bordered table-striped table-hover">
+
+    <thead class="table-dark">        
+        <tr>
+            <th>S.No.</th>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Actions</th>    
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @{
+            int sno = 1;
+        }
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@sno</td>
+                    <td>@item.EMP_ID</td>
+                    <td>@item.EMP_NAME</td>
+                    <td>@item.EMP_MOBILE</td>
+                    <td>@item.EMP_EMAIL</td>
+                    <td>@item.Department_Name</td>
+                    <td>@item.Designation_Name</td>
+                    
+                    <td class="text-center">
+
+                        <a asp-controller="Employee"
+                           asp-action="Edit"
+                           asp-route-id="@item.EMP_ID"
+                           class="text-primary text-decoration-none me-3"
+                           title="Edit">
+                            <i class="bi bi-pencil-square fs-5"></i>
+                        </a>
+
+                        <a asp-controller="Employee"
+                           asp-action="Delete"
+                           asp-route-id="@item.EMP_ID"
+                           class="text-danger text-decoration-none"
+                           title="Delete"
+                           onclick="return confirm('Are you sure you want to delete this employee?');">
+                            <i class="bi bi-trash-fill fs-5"></i>
+                        </a>
+
+                    </td>
+                </tr>
+                sno++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-danger">
+                    No Employee Records Found
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<br />
+
+<a asp-controller="Home"
+   asp-action="Index"
+   class="btn btn-secondary">
+    Back to Home
+</a>

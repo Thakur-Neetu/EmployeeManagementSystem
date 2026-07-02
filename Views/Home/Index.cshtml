@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Employee Management System</h1>
+
+    <br /><br />
+
+    <a asp-controller="Employee"
+       asp-action="Create"
+       class="btn btn-success">
+        Add Employee
+    </a>
+
+    <br /><br />
+
+    <a asp-controller="Employee"
+       asp-action="Index"
+       class="btn btn-primary">
+        View Employee List
+    </a>
+
+    <br /><br />
+
+    <a asp-controller="Employee"
+       asp-action="ExportToExcel"
+       class="btn btn-warning">
+        Export to Excel
+    </a>
+
+</div>
